@@ -1,0 +1,178 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 400">
+  <defs>
+    <linearGradient id="caveInside" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2D1B0E"/>
+      <stop offset="50%" style="stop-color:#1A0F08"/>
+      <stop offset="100%" style="stop-color:#0D0804"/>
+    </linearGradient>
+    <linearGradient id="caveEntrance" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#4A3728"/>
+      <stop offset="100%" style="stop-color:#2D1B0E"/>
+    </linearGradient>
+    <linearGradient id="outsideLight" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFD700"/>
+      <stop offset="50%" style="stop-color:#FFA500"/>
+      <stop offset="100%" style="stop-color:#FF8C00"/>
+    </linearGradient>
+    <filter id="caveBlur">
+      <feGaussianBlur stdDeviation="3"/>
+    </filter>
+  </defs>
+  <!-- Cave background -->
+  <rect width="960" height="400" fill="url(#caveInside)"/>
+  
+  <!-- Cave entrance opening -->
+  <path d="M150 100 Q200 50 300 80 Q400 40 500 70 Q600 30 700 75 Q800 35 850 100 L850 400 L150 400 Z" fill="url(#caveEntrance)"/>
+  
+  <!-- Outside view through cave entrance -->
+  <g clip-path="url(#caveClip)">
+    <defs>
+      <clipPath id="caveClip">
+        <path d="M180 120 Q230 70 330 100 Q430 60 530 90 Q630 50 730 95 Q830 55 820 120 L820 380 L180 380 Z"/>
+      </clipPath>
+    </defs>
+    
+    <!-- Outside sky -->
+    <rect x="180" y="50" width="640" height="200" fill="#87CEEB"/>
+    
+    <!-- Sun outside -->
+    <circle cx="600" cy="100" r="30" fill="#FFD700"/>
+    <circle cx="600" cy="100" r="45" fill="#FFA500" opacity="0.4"/>
+    
+    <!-- Clouds outside -->
+    <g opacity="0.6">
+      <ellipse cx="250" cy="80" rx="40" ry="15" fill="white"/>
+      <ellipse cx="290" cy="75" rx="30" ry="12" fill="white"/>
+      <ellipse cx="400" cy="90" rx="35" ry="14" fill="white"/>
+    </g>
+    
+    <!-- Mountains outside -->
+    <path d="M180 200 Q250 140 320 180 Q390 120 460 160 Q530 130 600 170 Q670 140 740 180 Q800 150 820 180 L820 200 L180 200 Z" fill="#5F9EA0" opacity="0.7"/>
+    
+    <!-- Trees outside -->
+    <path d="M220 200 L230 160 L240 200 Z" fill="#228B22"/>
+    <path d="M260 200 L275 150 L290 200 Z" fill="#2E8B57"/>
+    <path d="M350 200 L365 140 L380 200 Z" fill="#228B22"/>
+    <path d="M450 200 L465 150 L480 200 Z" fill="#2E8B57"/>
+    <path d="M550 200 L565 145 L580 200 Z" fill="#228B22"/>
+    <path d="M650 200 L665 155 L680 200 Z" fill="#2E8B57"/>
+    <path d="M720 200 L735 165 L750 200 Z" fill="#228B22"/>
+    
+    <!-- Ground outside -->
+    <rect x="180" y="200" width="640" height="180" fill="#32CD32"/>
+  </g>
+  
+  <!-- Light rays coming into cave -->
+  <g opacity="0.3">
+    <polygon points="300 100, 200 400, 250 400" fill="url(#outsideLight)"/>
+    <polygon points="400 80, 300 400, 380 400" fill="url(#outsideLight)"/>
+    <polygon points="500 70, 450 400, 520 400" fill="url(#outsideLight)"/>
+    <polygon points="600 85, 550 400, 620 400" fill="url(#outsideLight)"/>
+    <polygon points="700 100, 650 400, 720 400" fill="url(#outsideLight)"/>
+  </g>
+  
+  <!-- Cave floor -->
+  <rect x="0" y="350" width="960" height="50" fill="#3D2817"/>
+  
+  <!-- Stalactites -->
+  <g>
+    <path d="M200 0 L205 60 L210 0" fill="#5C4033"/>
+    <path d="M250 0 L253 40 L256 0" fill="#4A3428"/>
+    <path d="M300 0 L305 70 L310 0" fill="#5C4033"/>
+    <path d="M500 0 L503 50 L506 0" fill="#4A3428"/>
+    <path d="M550 0 L555 65 L560 0" fill="#5C4033"/>
+    <path d="M600 0 L603 45 L606 0" fill="#4A3428"/>
+    <path d="M700 0 L705 55 L710 0" fill="#5C4033"/>
+    <path d="M750 0 L753 35 L756 0" fill="#4A3428"/>
+  </g>
+  
+  <!-- Stalagmites -->
+  <g>
+    <path d="M220 400 L225 340 L230 400" fill="#5C4033"/>
+    <path d="M350 400 L353 360 L356 400" fill="#4A3428"/>
+    <path d="M450 400 L455 330 L460 400" fill="#5C4033"/>
+    <path d="M650 400 L653 350 L656 400" fill="#4A3428"/>
+    <path d="M720 400 L725 345 L730 400" fill="#5C4033"/>
+    <path d="M800 400 L803 370 L806 400" fill="#4A3428"/>
+  </g>
+  
+  <!-- Moss on cave walls -->
+  <g opacity="0.5">
+    <ellipse cx="100" cy="200" rx="30" ry="15" fill="#228B22"/>
+    <ellipse cx="90" cy="280" rx="25" ry="12" fill="#2E8B57"/>
+    <ellipse cx="860" cy="180" rx="30" ry="15" fill="#228B22"/>
+    <ellipse cx="870" cy="260" rx="25" ry="12" fill="#2E8B57"/>
+    <ellipse cx="480" cy="320" rx="40" ry="15" fill="#228B22"/>
+  </g>
+  
+  <!-- Glowing mushrooms -->
+  <g>
+    <!-- Mushroom 1 -->
+    <ellipse cx="150" cy="350" rx="20" ry="8" fill="#4A3428"/>
+    <rect x="148" y="330" width="4" height="20" fill="#6B4423"/>
+    <ellipse cx="150" cy="325" rx="15" ry="12" fill="#FF6B6B" opacity="0.8">
+      <animate attributeName="opacity" values="0.8;0.4;0.8" dur="3s" repeatCount="indefinite"/>
+    </ellipse>
+    <circle cx="147" cy="322" r="3" fill="#FF8787"/>
+    <circle cx="153" cy="324" r="2" fill="#FF8787"/>
+    
+    <!-- Mushroom 2 -->
+    <ellipse cx="300" cy="355" rx="15" ry="6" fill="#4A3428"/>
+    <rect x="298" y="340" width="4" height="15" fill="#6B4423"/>
+    <ellipse cx="300" cy="335" rx="12" ry="10" fill="#4ECDC4" opacity="0.7">
+      <animate attributeName="opacity" values="0.7;0.3;0.7" dur="2.5s" repeatCount="indefinite"/>
+    </ellipse>
+    <circle cx="297" cy="333" r="2" fill="#6DD5E3"/>
+    <circle cx="303" cy="335" r="1.5" fill="#6DD5E3"/>
+    
+    <!-- Mushroom 3 -->
+    <ellipse cx="500" cy="360" rx="18" ry="7" fill="#4A3428"/>
+    <rect x="498" y="345" width="4" height="15" fill="#6B4423"/>
+    <ellipse cx="500" cy="340" rx="14" ry="11" fill="#FFE66D" opacity="0.8">
+      <animate attributeName="opacity" values="0.8;0.4;0.8" dur="3.2s" repeatCount="indefinite"/>
+    </ellipse>
+    <circle cx="497" cy="338" r="2.5" fill="#FFF3B0"/>
+    <circle cx="503" cy="340" r="2" fill="#FFF3B0"/>
+    
+    <!-- Mushroom 4 -->
+    <ellipse cx="650" cy="355" rx="12" ry="5" fill="#4A3428"/>
+    <rect x="648" y="342" width="4" height="13" fill="#6B4423"/>
+    <ellipse cx="650" cy="338" rx="10" ry="8" fill="#C44DFF" opacity="0.7">
+      <animate attributeName="opacity" values="0.7;0.3;0.7" dur="2.8s" repeatCount="indefinite"/>
+    </ellipse>
+    <circle cx="647" cy="336" r="2" fill="#D97BFF"/>
+    
+    <!-- Mushroom 5 -->
+    <ellipse cx="800" cy="350" rx="16" ry="6" fill="#4A3428"/>
+    <rect x="798" y="335" width="4" height="15" fill="#6B4423"/>
+    <ellipse cx="800" cy="330" rx="13" ry="10" fill="#FF9FF3" opacity="0.8">
+      <animate attributeName="opacity" values="0.8;0.4;0.8" dur="2.6s" repeatCount="indefinite"/>
+    </ellipse>
+    <circle cx="797" cy="328" r="2.5" fill="#FFB6C1"/>
+  </g>
+  
+  <!-- Bats hanging from ceiling -->
+  <g opacity="0.6">
+    <path d="M350 80 Q340 70 350 60 Q360 70 350 80" stroke="#1A1A1A" stroke-width="2" fill="none"/>
+    <path d="M350 80 Q345 95 330 90 Q340 85 350 80" stroke="#1A1A1A" stroke-width="1.5" fill="none"/>
+    <path d="M350 80 Q355 95 370 90 Q360 85 350 80" stroke="#1A1A1A" stroke-width="1.5" fill="none"/>
+    
+    <path d="M550 70 Q540 60 550 50 Q560 60 550 70" stroke="#1A1A1A" stroke-width="2" fill="none"/>
+    <path d="M550 70 Q545 85 530 80 Q540 75 550 70" stroke="#1A1A1A" stroke-width="1.5" fill="none"/>
+    <path d="M550 70 Q555 85 570 80 Q560 75 550 70" stroke="#1A1A1A" stroke-width="1.5" fill="none"/>
+    
+    <path d="M450 90 Q440 80 450 70 Q460 80 450 90" stroke="#1A1A1A" stroke-width="2" fill="none"/>
+    <path d="M450 90 Q445 105 430 100 Q440 95 450 90" stroke="#1A1A1A" stroke-width="1.5" fill="none"/>
+    <path d="M450 90 Q455 105 470 100 Q460 95 450 90" stroke="#1A1A1A" stroke-width="1.5" fill="none"/>
+  </g>
+  
+  <!-- Small rocks on floor -->
+  <g>
+    <ellipse cx="100" cy="380" rx="15" ry="8" fill="#5C4033"/>
+    <ellipse cx="200" cy="375" rx="10" ry="6" fill="#4A3428"/>
+    <ellipse cx="400" cy="385" rx="12" ry="7" fill="#5C4033"/>
+    <ellipse cx="600" cy="378" rx="10" ry="5" fill="#4A3428"/>
+    <ellipse cx="750" cy="382" rx="14" ry="8" fill="#5C4033"/>
+    <ellipse cx="900" cy="376" rx="11" ry="6" fill="#4A3428"/>
+  </g>
+</svg>

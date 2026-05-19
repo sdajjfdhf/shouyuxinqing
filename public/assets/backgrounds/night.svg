@@ -1,0 +1,169 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 400">
+  <defs>
+    <linearGradient id="nightSky" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#0A0A1A"/>
+      <stop offset="30%" style="stop-color:#1A1A3A"/>
+      <stop offset="70%" style="stop-color:#2A2A5A"/>
+      <stop offset="100%" style="stop-color:#3A3A7A"/>
+    </linearGradient>
+    <filter id="starGlow">
+      <feGaussianBlur stdDeviation="1.5"/>
+    </filter>
+  </defs>
+  <!-- Night sky -->
+  <rect width="960" height="400" fill="url(#nightSky)"/>
+  
+  <!-- Moon -->
+  <circle cx="800" cy="80" r="35" fill="#F5F5DC"/>
+  <circle cx="800" cy="80" r="35" fill="url(#moonGradient)" opacity="0.3"/>
+  <circle cx="800" cy="80" r="50" fill="#F5F5DC" opacity="0.15"/>
+  
+  <!-- Moon gradient for texture -->
+  <defs>
+    <radialGradient id="moonGradient">
+      <stop offset="0%" style="stop-color:#FFFACD"/>
+      <stop offset="100%" style="stop-color:#DAA520"/>
+    </radialGradient>
+    <radialGradient id="starBright">
+      <stop offset="0%" style="stop-color:#FFFFFF"/>
+      <stop offset="100%" style="stop-color:#E0E0FF"/>
+    </radialGradient>
+  </defs>
+  
+  <!-- Stars -->
+  <g>
+    <!-- Bright stars with glow -->
+    <circle cx="50" cy="50" r="2" fill="white" filter="url(#starGlow)"/>
+    <circle cx="150" cy="30" r="1.5" fill="white" filter="url(#starGlow)"/>
+    <circle cx="250" cy="60" r="2" fill="white" filter="url(#starGlow)"/>
+    <circle cx="350" cy="40" r="1.5" fill="white" filter="url(#starGlow)"/>
+    <circle cx="450" cy="70" r="2" fill="white" filter="url(#starGlow)"/>
+    <circle cx="550" cy="35" r="1.5" fill="white" filter="url(#starGlow)"/>
+    <circle cx="650" cy="55" r="2" fill="white" filter="url(#starGlow)"/>
+    <circle cx="100" cy="120" r="1.5" fill="white" filter="url(#starGlow)"/>
+    <circle cx="200" cy="100" r="2" fill="white" filter="url(#starGlow)"/>
+    <circle cx="300" cy="130" r="1.5" fill="white" filter="url(#starGlow)"/>
+    <circle cx="400" cy="110" r="2" fill="white" filter="url(#starGlow)"/>
+    <circle cx="500" cy="140" r="1.5" fill="white" filter="url(#starGlow)"/>
+    <circle cx="600" cy="120" r="2" fill="white" filter="url(#starGlow)"/>
+    <circle cx="700" cy="145" r="1.5" fill="white" filter="url(#starGlow)"/>
+    <circle cx="800" cy="130" r="2" fill="white" filter="url(#starGlow)"/>
+    <circle cx="900" cy="110" r="1.5" fill="white" filter="url(#starGlow)"/>
+    
+    <!-- Fainter stars -->
+    <circle cx="80" cy="180" r="1" fill="white" opacity="0.6"/>
+    <circle cx="180" cy="160" r="1" fill="white" opacity="0.6"/>
+    <circle cx="280" cy="190" r="1" fill="white" opacity="0.6"/>
+    <circle cx="380" cy="170" r="1" fill="white" opacity="0.6"/>
+    <circle cx="480" cy="200" r="1" fill="white" opacity="0.6"/>
+    <circle cx="580" cy="180" r="1" fill="white" opacity="0.6"/>
+    <circle cx="680" cy="210" r="1" fill="white" opacity="0.6"/>
+    <circle cx="780" cy="190" r="1" fill="white" opacity="0.6"/>
+    <circle cx="880" cy="170" r="1" fill="white" opacity="0.6"/>
+    <circle cx="120" cy="240" r="1" fill="white" opacity="0.5"/>
+    <circle cx="220" cy="220" r="1" fill="white" opacity="0.5"/>
+    <circle cx="320" cy="250" r="1" fill="white" opacity="0.5"/>
+    <circle cx="420" cy="230" r="1" fill="white" opacity="0.5"/>
+    <circle cx="520" cy="260" r="1" fill="white" opacity="0.5"/>
+    <circle cx="620" cy="240" r="1" fill="white" opacity="0.5"/>
+    <circle cx="720" cy="270" r="1" fill="white" opacity="0.5"/>
+    <circle cx="820" cy="250" r="1" fill="white" opacity="0.5"/>
+    <circle cx="920" cy="230" r="1" fill="white" opacity="0.5"/>
+  </g>
+  
+  <!-- Milky way effect -->
+  <path d="M0 100 Q100 80 200 90 Q300 70 400 85 Q500 65 600 80 Q700 60 800 75 Q900 55 960 70" stroke="#4A4A8A" stroke-width="40" fill="none" opacity="0.1"/>
+  <path d="M0 120 Q100 100 200 110 Q300 90 400 105 Q500 85 600 100 Q700 80 800 95 Q900 75 960 90" stroke="#5A5AA0" stroke-width="30" fill="none" opacity="0.15"/>
+  
+  <!-- Mountains silhouette -->
+  <path d="M0 250 Q80 180 160 230 Q240 160 320 220 Q400 170 480 230 Q560 150 640 210 Q720 170 800 230 Q880 180 960 240 L960 400 L0 400 Z" fill="#1A1A2E"/>
+  
+  <!-- Forest silhouette -->
+  <g>
+    <!-- Pine trees -->
+    <path d="M50 250 L60 180 L70 250 Z" fill="#0F0F1F"/>
+    <path d="M80 250 L95 150 L110 250 Z" fill="#121225"/>
+    <path d="M120 250 L135 170 L150 250 Z" fill="#0F0F1F"/>
+    <path d="M160 250 L175 140 L190 250 Z" fill="#121225"/>
+    <path d="M200 250 L215 160 L230 250 Z" fill="#0F0F1F"/>
+    <path d="M240 250 L255 180 L270 250 Z" fill="#121225"/>
+    
+    <path d="M400 250 L415 130 L430 250 Z" fill="#121225"/>
+    <path d="M440 250 L455 160 L470 250 Z" fill="#0F0F1F"/>
+    <path d="M480 250 L495 140 L510 250 Z" fill="#121225"/>
+    
+    <path d="M650 250 L665 150 L680 250 Z" fill="#0F0F1F"/>
+    <path d="M690 250 L705 170 L720 250 Z" fill="#121225"/>
+    <path d="M730 250 L745 140 L760 250 Z" fill="#0F0F1F"/>
+    
+    <path d="M850 250 L865 160 L880 250 Z" fill="#121225"/>
+    <path d="M890 250 L905 180 L920 250 Z" fill="#0F0F1F"/>
+  </g>
+  
+  <!-- Ground/moss -->
+  <rect x="0" y="350" width="960" height="50" fill="#1A2A1A"/>
+  
+  <!-- Grass silhouettes -->
+  <g opacity="0.7">
+    <path d="M20 350 Q25 330 20 310" stroke="#1A3A1A" stroke-width="3" fill="none"/>
+    <path d="M40 350 Q45 325 40 305" stroke="#153015" stroke-width="2" fill="none"/>
+    <path d="M60 350 Q65 335 60 315" stroke="#1A3A1A" stroke-width="3" fill="none"/>
+    <path d="M80 350 Q85 328 80 308" stroke="#153015" stroke-width="2" fill="none"/>
+    
+    <path d="M150 350 Q155 330 150 310" stroke="#1A3A1A" stroke-width="3" fill="none"/>
+    <path d="M170 350 Q175 325 170 305" stroke="#153015" stroke-width="2" fill="none"/>
+    
+    <path d="M300 350 Q305 330 300 310" stroke="#1A3A1A" stroke-width="3" fill="none"/>
+    <path d="M320 350 Q325 325 320 305" stroke="#153015" stroke-width="2" fill="none"/>
+    
+    <path d="M500 350 Q505 330 500 310" stroke="#1A3A1A" stroke-width="3" fill="none"/>
+    <path d="M520 350 Q525 325 520 305" stroke="#153015" stroke-width="2" fill="none"/>
+    
+    <path d="M700 350 Q705 330 700 310" stroke="#1A3A1A" stroke-width="3" fill="none"/>
+    <path d="M720 350 Q725 325 720 305" stroke="#153015" stroke-width="2" fill="none"/>
+    
+    <path d="M850 350 Q855 330 850 310" stroke="#1A3A1A" stroke-width="3" fill="none"/>
+    <path d="M870 350 Q875 325 870 305" stroke="#153015" stroke-width="2" fill="none"/>
+  </g>
+  
+  <!-- Fireflies -->
+  <g>
+    <circle cx="100" cy="300" r="2" fill="#7FFF00" opacity="0.8">
+      <animate attributeName="opacity" values="0.8;0.2;0.8" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="200" cy="280" r="1.5" fill="#ADFF2F" opacity="0.6">
+      <animate attributeName="opacity" values="0.6;0.1;0.6" dur="2.5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="300" cy="310" r="2" fill="#7FFF00" opacity="0.7">
+      <animate attributeName="opacity" values="0.7;0.2;0.7" dur="1.8s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="450" cy="290" r="1.5" fill="#ADFF2F" opacity="0.8">
+      <animate attributeName="opacity" values="0.8;0.3;0.8" dur="2.2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="550" cy="320" r="2" fill="#7FFF00" opacity="0.6">
+      <animate attributeName="opacity" values="0.6;0.1;0.6" dur="2.8s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="650" cy="285" r="1.5" fill="#ADFF2F" opacity="0.7">
+      <animate attributeName="opacity" values="0.7;0.2;0.7" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="750" cy="305" r="2" fill="#7FFF00" opacity="0.8">
+      <animate attributeName="opacity" values="0.8;0.3;0.8" dur="2.4s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="850" cy="295" r="1.5" fill="#ADFF2F" opacity="0.6">
+      <animate attributeName="opacity" values="0.6;0.1;0.6" dur="2.6s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="900" cy="315" r="2" fill="#7FFF00" opacity="0.7">
+      <animate attributeName="opacity" values="0.7;0.2;0.7" dur="2.1s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+  
+  <!-- Owl on tree branch -->
+  <ellipse cx="280" cy="200" rx="20" ry="25" fill="#2F2F4F"/>
+  <circle cx="272" cy="195" r="8" fill="#3F3F5F"/>
+  <circle cx="288" cy="195" r="8" fill="#3F3F5F"/>
+  <circle cx="272" cy="195" r="4" fill="#000"/>
+  <circle cx="288" cy="195" r="4" fill="#000"/>
+  <circle cx="273" cy="194" r="1.5" fill="#FFD700"/>
+  <circle cx="289" cy="194" r="1.5" fill="#FFD700"/>
+  <path d="M275 205 L285 205" stroke="#000" stroke-width="2"/>
+</svg>

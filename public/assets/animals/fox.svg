@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="foxBody" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF8C00"/>
+      <stop offset="100%" style="stop-color:#FF4500"/>
+    </linearGradient>
+    <linearGradient id="foxFace" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFA500"/>
+      <stop offset="100%" style="stop-color:#FF6347"/>
+    </linearGradient>
+    <linearGradient id="foxWhite" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFF8DC"/>
+      <stop offset="100%" style="stop-color:#FFE4B5"/>
+    </linearGradient>
+  </defs>
+  <!-- Body -->
+  <ellipse cx="100" cy="155" rx="45" ry="30" fill="url(#foxBody)"/>
+  <!-- Tail -->
+  <ellipse cx="150" cy="140" rx="35" ry="15" fill="url(#foxBody)" transform="rotate(-20 150 140)"/>
+  <ellipse cx="175" cy="130" rx="12" ry="8" fill="url(#foxWhite)"/>
+  <!-- Head -->
+  <circle cx="100" cy="95" r="38" fill="url(#foxFace)"/>
+  <!-- Ears -->
+  <polygon points="65,60 75,30 90,55" fill="url(#foxBody)"/>
+  <polygon points="68,58 75,40 85,55" fill="url(#foxWhite)"/>
+  <polygon points="135,60 125,30 110,55" fill="url(#foxBody)"/>
+  <polygon points="132,58 125,40 115,55" fill="url(#foxWhite)"/>
+  <!-- Face White Patch -->
+  <ellipse cx="100" cy="110" rx="25" ry="20" fill="url(#foxWhite)"/>
+  <!-- Eyes -->
+  <ellipse cx="82" cy="90" rx="8" ry="10" fill="#4A4A4A"/>
+  <ellipse cx="118" cy="90" rx="8" ry="10" fill="#4A4A4A"/>
+  <circle cx="84" cy="87" r="3" fill="white"/>
+  <circle cx="120" cy="87" r="3" fill="white"/>
+  <!-- Nose -->
+  <ellipse cx="100" cy="108" rx="5" ry="4" fill="#2C2C2C"/>
+  <!-- Mouth -->
+  <path d="M 100 112 L 95 118 M 100 112 L 105 118" stroke="#4A4A4A" stroke-width="2" fill="none"/>
+  <!-- Cheeks -->
+  <circle cx="65" cy="100" r="7" fill="#FF6347" opacity="0.4"/>
+  <circle cx="135" cy="100" r="7" fill="#FF6347" opacity="0.4"/>
+</svg>

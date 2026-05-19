@@ -1,0 +1,127 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 400">
+  <defs>
+    <linearGradient id="forestSky" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#5BA3C3"/>
+      <stop offset="40%" style="stop-color:#87CEEB"/>
+      <stop offset="70%" style="stop-color:#A8D8EA"/>
+      <stop offset="100%" style="stop-color:#98D8C8"/>
+    </linearGradient>
+    <linearGradient id="treeTrunk" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#8B5A2B"/>
+      <stop offset="50%" style="stop-color:#6B4423"/>
+      <stop offset="100%" style="stop-color:#4A2C17"/>
+    </linearGradient>
+    <linearGradient id="grassGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#4CAF50"/>
+      <stop offset="100%" style="stop-color:#2E7D32"/>
+    </linearGradient>
+    <filter id="softBlur">
+      <feGaussianBlur stdDeviation="2"/>
+    </filter>
+    <filter id="sunGlow">
+      <feGaussianBlur stdDeviation="8"/>
+    </filter>
+  </defs>
+  <!-- Sky -->
+  <rect width="960" height="400" fill="url(#forestSky)"/>
+  
+  <!-- Sun -->
+  <circle cx="750" cy="60" r="45" fill="#FFEB3B" filter="url(#sunGlow)"/>
+  <circle cx="750" cy="60" r="35" fill="#FFC107"/>
+  
+  <!-- Sun rays -->
+  <g opacity="0.15">
+    <polygon points="750,60 500,400 530,395" fill="#FFEB3B"/>
+    <polygon points="750,60 600,400 630,395" fill="#FFEB3B"/>
+    <polygon points="750,60 700,400 730,395" fill="#FFEB3B"/>
+    <polygon points="750,60 800,400 830,395" fill="#FFEB3B"/>
+    <polygon points="750,60 900,380 930,375" fill="#FFEB3B"/>
+  </g>
+  
+  <!-- Clouds -->
+  <g opacity="0.7">
+    <ellipse cx="150" cy="80" rx="60" ry="25" fill="white" filter="url(#softBlur)"/>
+    <ellipse cx="190" cy="75" rx="50" ry="20" fill="white" filter="url(#softBlur)"/>
+    <ellipse cx="220" cy="85" rx="40" ry="18" fill="white" filter="url(#softBlur)"/>
+  </g>
+  
+  <!-- Distant mountains -->
+  <path d="M0,280 Q150,200 300,250 T600,220 T960,260 L960,320 L0,320 Z" fill="#5D9E8A" opacity="0.6"/>
+  <path d="M0,300 Q120,240 250,280 T500,260 T960,290 L960,320 L0,320 Z" fill="#6BB39A" opacity="0.7"/>
+  
+  <!-- Far trees -->
+  <g opacity="0.4">
+    <polygon points="80,320 100,240 120,320" fill="#1B5E20"/>
+    <polygon points="150,320 175,220 200,320" fill="#2E7D32"/>
+    <polygon points="280,320 300,260 320,320" fill="#1B5E20"/>
+    <polygon points="450,320 475,230 500,320" fill="#2E7D32"/>
+    <polygon points="600,320 625,250 650,320" fill="#1B5E20"/>
+    <polygon points="750,320 775,220 800,320" fill="#2E7D32"/>
+    <polygon points="880,320 905,260 930,320" fill="#1B5E20"/>
+  </g>
+  
+  <!-- Mid ground trees -->
+  <g opacity="0.6">
+    <polygon points="30,320 70,180 110,320" fill="#2E7D32"/>
+    <rect x="60" y="260" width="20" height="60" fill="#5D4037"/>
+    
+    <polygon points="180,320 220,160 260,320" fill="#388E3C"/>
+    <rect x="210" y="250" width="25" height="70" fill="#6D4C41"/>
+    
+    <polygon points="600,320 650,150 700,320" fill="#2E7D32"/>
+    <rect x="635" y="240" width="30" height="80" fill="#5D4037"/>
+    
+    <polygon points="850,320 910,140 960,320" fill="#388E3C"/>
+    <rect x="895" y="230" width="35" height="90" fill="#6D4C41"/>
+  </g>
+  
+  <!-- Foreground trees -->
+  <polygon points="0,320 50,80 100,320" fill="#1B5E20"/>
+  <rect x="40" y="220" width="40" height="100" fill="url(#treeTrunk)"/>
+  
+  <polygon points="860,320 960,50 960,320" fill="#2E7D32"/>
+  <rect x="920" y="200" width="45" height="120" fill="url(#treeTrunk)"/>
+  
+  <!-- Ground -->
+  <rect x="0" y="320" width="960" height="80" fill="url(#grassGrad)"/>
+  
+  <!-- Path -->
+  <path d="M 480 400 Q 450 350 470 300 Q 500 250 470 180 Q 440 120 480 60" stroke="#C4A35A" stroke-width="80" fill="none" opacity="0.7"/>
+  <path d="M 480 400 Q 450 350 470 300 Q 500 250 470 180 Q 440 120 480 60" stroke="#D4B36A" stroke-width="50" fill="none" opacity="0.8"/>
+  
+  <!-- Grass details -->
+  <g opacity="0.8">
+    <path d="M 50 395 Q 52 380 48 395" stroke="#388E3C" stroke-width="2"/>
+    <path d="M 80 390 Q 83 375 78 390" stroke="#4CAF50" stroke-width="2"/>
+    <path d="M 120 392 Q 124 378 118 392" stroke="#388E3C" stroke-width="2"/>
+    <path d="M 700 395 Q 703 382 698 395" stroke="#4CAF50" stroke-width="2"/>
+    <path d="M 750 390 Q 754 376 748 390" stroke="#388E3C" stroke-width="2"/>
+    <path d="M 800 393 Q 804 379 798 393" stroke="#4CAF50" stroke-width="2"/>
+  </g>
+  
+  <!-- Flowers -->
+  <g>
+    <circle cx="150" cy="385" r="5" fill="#FF80AB"/>
+    <circle cx="152" cy="382" r="3" fill="#FFCDD2"/>
+    <circle cx="280" cy="382" r="4" fill="#FFD54F"/>
+    <circle cx="283" cy="380" r="2" fill="#FFF176"/>
+    <circle cx="400" cy="386" r="5" fill="#E1BEE7"/>
+    <circle cx="402" cy="383" r="3" fill="#CE93D8"/>
+    <circle cx="650" cy="383" r="4" fill="#81C784"/>
+    <circle cx="653" cy="381" r="2" fill="#A5D6A7"/>
+    <circle cx="820" cy="385" r="5" fill="#FFAB91"/>
+    <circle cx="822" cy="382" r="3" fill="#FFCCBC"/>
+  </g>
+  
+  <!-- Butterflies -->
+  <g opacity="0.6">
+    <ellipse cx="300" cy="200" rx="12" ry="8" fill="#E1BEE7" transform="rotate(30 300 200)"/>
+    <ellipse cx="315" cy="205" rx="12" ry="8" fill="#CE93D8" transform="rotate(30 315 205)"/>
+    <ellipse cx="550" cy="220" rx="10" ry="7" fill="#81C784" transform="rotate(-20 550 220)"/>
+    <ellipse cx="563" cy="224" rx="10" ry="7" fill="#66BB6A" transform="rotate(-20 563 224)"/>
+  </g>
+  
+  <!-- Birds -->
+  <path d="M 200 100 Q 210 90 220 100 Q 210 95 200 100" stroke="#5D4037" stroke-width="2" fill="none"/>
+  <path d="M 650 120 Q 660 110 670 120 Q 660 115 650 120" stroke="#5D4037" stroke-width="2" fill="none"/>
+</svg>

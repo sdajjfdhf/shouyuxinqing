@@ -1,0 +1,142 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    -webkit-tap-highlight-color: transparent;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Nunito', system-ui, sans-serif;
+    background: linear-gradient(165deg, #fff8fa 0%, #f4faf6 38%, #e5f0ea 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .font-cute {
+    font-family: 'ZCOOL KuaiLe', cursive, sans-serif;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply border border-blossom-100/60 bg-blossom-50/75 backdrop-blur-xl;
+  }
+
+  .glass-dark {
+    @apply border-t border-blossom-100/50 bg-blossom-50/90 backdrop-blur-2xl;
+  }
+
+  .chat-bubble-user {
+    @apply rounded-2xl rounded-br-sm bg-gradient-to-br from-forest-400 to-blossom-400 text-white;
+  }
+
+  .chat-bubble-ai {
+    @apply bg-white text-forest-800 rounded-2xl rounded-bl-sm shadow-sm;
+  }
+
+  .firefly {
+    @apply absolute w-1.5 h-1.5 rounded-full bg-amber-200;
+    box-shadow: 0 0 12px rgba(251, 191, 36, 0.95), 0 0 24px rgba(252, 211, 77, 0.6);
+    animation: firefly-drift 4.5s ease-in-out infinite, firefly-flicker 2.1s ease-in-out infinite;
+  }
+
+  .deer-avatar {
+    @apply relative w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-100 to-orange-200 cursor-pointer;
+    filter: drop-shadow(0 8px 16px rgba(120, 53, 15, 0.2));
+  }
+
+  .deer-ear {
+    @apply absolute block w-5 h-6 top-1 bg-gradient-to-b from-amber-200 to-orange-300;
+    border-radius: 65% 65% 45% 45%;
+    transform-origin: bottom center;
+    animation: ear-wiggle 3.4s ease-in-out infinite;
+  }
+
+  .deer-ear.left {
+    left: 8px;
+    transform: rotate(-22deg);
+    animation-delay: 0.1s;
+  }
+
+  .deer-ear.right {
+    right: 8px;
+    transform: rotate(22deg);
+    animation-name: ear-wiggle-right;
+    animation-delay: 0.3s;
+  }
+
+  .deer-head {
+    @apply absolute left-1/2 top-3 w-10 h-10 -translate-x-1/2 rounded-full bg-gradient-to-b from-orange-200 to-amber-300;
+  }
+
+  .deer-eye {
+    @apply absolute block w-1.5 h-1.5 rounded-full bg-amber-950;
+    top: 14px;
+    animation: blink 5.6s infinite;
+    transform-origin: center;
+  }
+
+  .deer-eye.left {
+    left: 10px;
+    animation-delay: 0.1s;
+  }
+
+  .deer-eye.right {
+    right: 10px;
+    animation-delay: 0.2s;
+  }
+
+  .deer-nose {
+    @apply absolute left-1/2 -translate-x-1/2 bottom-2.5 w-2.5 h-1.5 rounded-full bg-amber-900;
+  }
+}
+
+@layer utilities {
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+@keyframes firefly-drift {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  25% { transform: translateY(-7px) translateX(3px); }
+  50% { transform: translateY(-2px) translateX(-3px); }
+  75% { transform: translateY(-9px) translateX(2px); }
+}
+
+@keyframes firefly-flicker {
+  0%, 100% { opacity: 0.25; }
+  40% { opacity: 0.95; }
+  60% { opacity: 0.5; }
+}
+
+@keyframes blink {
+  0%, 44%, 48%, 100% { transform: scaleY(1); }
+  45%, 47% { transform: scaleY(0.1); }
+}
+
+@keyframes ear-wiggle {
+  0%, 100% { transform: rotate(-22deg); }
+  50% { transform: rotate(-14deg); }
+}
+
+@keyframes ear-wiggle-right {
+  0%, 100% { transform: rotate(22deg); }
+  50% { transform: rotate(14deg); }
+}

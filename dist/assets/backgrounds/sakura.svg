@@ -1,0 +1,172 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 400">
+  <defs>
+    <linearGradient id="sakuraSky" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFE4EC"/>
+      <stop offset="30%" style="stop-color:#FFC8D9"/>
+      <stop offset="60%" style="stop-color:#FFB4C8"/>
+      <stop offset="100%" style="stop-color:#FF9EB3"/>
+    </linearGradient>
+    <filter id="blur">
+      <feGaussianBlur stdDeviation="2"/>
+    </filter>
+    <filter id="petalBlur">
+      <feGaussianBlur stdDeviation="1"/>
+    </filter>
+  </defs>
+  <!-- Background -->
+  <rect width="960" height="400" fill="url(#sakuraSky)"/>
+  
+  <!-- Sun with soft glow -->
+  <circle cx="800" cy="50" r="35" fill="#FFE082" opacity="0.8"/>
+  <circle cx="800" cy="50" r="50" fill="#FFD54F" opacity="0.3"/>
+  
+  <!-- Soft clouds -->
+  <g opacity="0.6">
+    <ellipse cx="100" cy="100" rx="50" ry="20" fill="white" filter="url(#blur)"/>
+    <ellipse cx="140" cy="95" rx="40" ry="16" fill="white" filter="url(#blur)"/>
+    <ellipse cx="170" cy="100" rx="30" ry="14" fill="white" filter="url(#blur)"/>
+  </g>
+  
+  <!-- Ground -->
+  <rect x="0" y="320" width="960" height="80" fill="#F5E6E8"/>
+  
+  <!-- Petal covered ground -->
+  <g opacity="0.4">
+    <ellipse cx="100" cy="360" rx="8" ry="4" fill="#FFCDD2" transform="rotate(15 100 360)"/>
+    <ellipse cx="150" cy="370" rx="6" ry="3" fill="#FFB6C1" transform="rotate(-10 150 370)"/>
+    <ellipse cx="200" cy="365" rx="7" ry="4" fill="#FFCDD2" transform="rotate(20 200 365)"/>
+    <ellipse cx="300" cy="360" rx="8" ry="4" fill="#FFB6C1" transform="rotate(-15 300 360)"/>
+    <ellipse cx="400" cy="370" rx="6" ry="3" fill="#FFCDD2" transform="rotate(25 400 370)"/>
+    <ellipse cx="500" cy="365" rx="7" ry="4" fill="#FFB6C1" transform="rotate(-20 500 365)"/>
+    <ellipse cx="600" cy="360" rx="8" ry="4" fill="#FFCDD2" transform="rotate(10 600 360)"/>
+    <ellipse cx="700" cy="370" rx="6" ry="3" fill="#FFB6C1" transform="rotate(-25 700 370)"/>
+    <ellipse cx="800" cy="365" rx="7" ry="4" fill="#FFCDD2" transform="rotate(15 800 365)"/>
+    <ellipse cx="880" cy="360" rx="8" ry="4" fill="#FFB6C1" transform="rotate(-10 880 360)"/>
+  </g>
+  
+  <!-- Cherry blossom branches -->
+  <g>
+    <!-- Main branch from left -->
+    <path d="M -50 400 Q 100 300 250 250 Q 400 200 550 220 Q 700 240 850 200 Q 950 170 1000 250" stroke="#C9A5A5" stroke-width="6" fill="none"/>
+    <path d="M -50 400 Q 80 320 220 270 Q 360 220 500 240 Q 640 260 780 220 Q 900 190 1000 260" stroke="#D4B5B5" stroke-width="4" fill="none"/>
+    
+    <!-- Side branches -->
+    <path d="M 150 320 Q 130 280 160 250" stroke="#D4B5B5" stroke-width="3" fill="none"/>
+    <path d="M 350 250 Q 330 210 370 180" stroke="#D4B5B5" stroke-width="3" fill="none"/>
+    <path d="M 550 220 Q 570 180 540 140" stroke="#D4B5B5" stroke-width="3" fill="none"/>
+    <path d="M 750 210 Q 780 170 750 130" stroke="#D4B5B5" stroke-width="3" fill="none"/>
+  </g>
+  
+  <!-- Blossom clusters -->
+  <g>
+    <!-- Cluster 1 -->
+    <g transform="translate(120, 280)">
+      <circle cx="0" cy="0" r="15" fill="#FFB6C1"/>
+      <circle cx="-18" cy="8" r="12" fill="#FFC0CB"/>
+      <circle cx="20" cy="5" r="13" fill="#FFB6C1"/>
+      <circle cx="-12" cy="-18" r="10" fill="#FFC8D4"/>
+      <circle cx="15" cy="-15" r="11" fill="#FFB6C1"/>
+      <circle cx="0" cy="-22" r="8" fill="#FFC0CB"/>
+      <!-- Petals -->
+      <ellipse cx="-5" cy="8" rx="4" ry="6" fill="#FFE4E9" opacity="0.8"/>
+      <ellipse cx="8" cy="-5" rx="4" ry="6" fill="#FFE4E9" opacity="0.8"/>
+      <ellipse cx="-8" cy="-8" rx="4" ry="6" fill="#FFE4E9" opacity="0.8"/>
+    </g>
+    
+    <!-- Cluster 2 -->
+    <g transform="translate(280, 220)">
+      <circle cx="0" cy="0" r="18" fill="#FFB6C1"/>
+      <circle cx="-22" cy="10" r="14" fill="#FFC0CB"/>
+      <circle cx="25" cy="8" r="15" fill="#FFB6C1"/>
+      <circle cx="-15" cy="-25" r="12" fill="#FFC8D4"/>
+      <circle cx="18" cy="-20" r="13" fill="#FFB6C1"/>
+      <circle cx="0" cy="-30" r="10" fill="#FFC0CB"/>
+      <circle cx="-10" cy="-35" r="8" fill="#FFC8D4"/>
+      <ellipse cx="-6" cy="10" rx="5" ry="7" fill="#FFE4E9" opacity="0.8"/>
+      <ellipse cx="10" cy="-6" rx="5" ry="7" fill="#FFE4E9" opacity="0.8"/>
+    </g>
+    
+    <!-- Cluster 3 -->
+    <g transform="translate(480, 200)">
+      <circle cx="0" cy="0" r="16" fill="#FFB6C1"/>
+      <circle cx="-20" cy="8" r="13" fill="#FFC0CB"/>
+      <circle cx="22" cy="6" r="14" fill="#FFB6C1"/>
+      <circle cx="-14" cy="-22" r="11" fill="#FFC8D4"/>
+      <circle cx="16" cy="-18" r="12" fill="#FFB6C1"/>
+      <circle cx="0" cy="-28" r="9" fill="#FFC0CB"/>
+      <ellipse cx="-5" cy="8" rx="4" ry="6" fill="#FFE4E9" opacity="0.8"/>
+      <ellipse cx="9" cy="-5" rx="4" ry="6" fill="#FFE4E9" opacity="0.8"/>
+    </g>
+    
+    <!-- Cluster 4 -->
+    <g transform="translate(680, 240)">
+      <circle cx="0" cy="0" r="15" fill="#FFB6C1"/>
+      <circle cx="-18" cy="7" r="12" fill="#FFC0CB"/>
+      <circle cx="20" cy="5" r="13" fill="#FFB6C1"/>
+      <circle cx="-12" cy="-20" r="10" fill="#FFC8D4"/>
+      <circle cx="14" cy="-16" r="11" fill="#FFB6C1"/>
+      <ellipse cx="-5" cy="7" rx="4" ry="6" fill="#FFE4E9" opacity="0.8"/>
+      <ellipse cx="8" cy="-5" rx="4" ry="6" fill="#FFE4E9" opacity="0.8"/>
+    </g>
+    
+    <!-- Cluster 5 -->
+    <g transform="translate(850, 260)">
+      <circle cx="0" cy="0" r="13" fill="#FFB6C1"/>
+      <circle cx="-15" cy="6" r="10" fill="#FFC0CB"/>
+      <circle cx="17" cy="4" r="11" fill="#FFB6C1"/>
+      <circle cx="-10" cy="-16" r="9" fill="#FFC8D4"/>
+      <ellipse cx="-4" cy="6" rx="3" ry="5" fill="#FFE4E9" opacity="0.8"/>
+      <ellipse cx="7" cy="-4" rx="3" ry="5" fill="#FFE4E9" opacity="0.8"/>
+    </g>
+    
+    <!-- Small clusters on side branches -->
+    <g transform="translate(140, 260)">
+      <circle cx="0" cy="0" r="8" fill="#FFC0CB"/>
+      <circle cx="-10" cy="4" r="6" fill="#FFC8D4"/>
+      <circle cx="10" cy="3" r="7" fill="#FFC0CB"/>
+    </g>
+    
+    <g transform="translate(350, 195)">
+      <circle cx="0" cy="0" r="9" fill="#FFC0CB"/>
+      <circle cx="-11" cy="5" r="7" fill="#FFC8D4"/>
+      <circle cx="12" cy="4" r="8" fill="#FFC0CB"/>
+    </g>
+    
+    <g transform="translate(545, 150)">
+      <circle cx="0" cy="0" r="8" fill="#FFC0CB"/>
+      <circle cx="-10" cy="4" r="6" fill="#FFC8D4"/>
+      <circle cx="10" cy="3" r="7" fill="#FFC0CB"/>
+    </g>
+    
+    <g transform="translate(745, 145)">
+      <circle cx="0" cy="0" r="9" fill="#FFC0CB"/>
+      <circle cx="-11" cy="5" r="7" fill="#FFC8D4"/>
+      <circle cx="12" cy="4" r="8" fill="#FFC0CB"/>
+    </g>
+  </g>
+  
+  <!-- Falling petals -->
+  <g opacity="0.7">
+    <ellipse cx="80" cy="150" rx="5" ry="7" fill="#FFC0CB" transform="rotate(25 80 150)"/>
+    <ellipse cx="180" cy="200" rx="4" ry="6" fill="#FFB6C1" transform="rotate(-20 180 200)"/>
+    <ellipse cx="280" cy="160" rx="5" ry="7" fill="#FFC8D4" transform="rotate(35 280 160)"/>
+    <ellipse cx="380" cy="220" rx="4" ry="6" fill="#FFC0CB" transform="rotate(-25 380 220)"/>
+    <ellipse cx="480" cy="180" rx="5" ry="7" fill="#FFB6C1" transform="rotate(20 480 180)"/>
+    <ellipse cx="580" cy="240" rx="4" ry="6" fill="#FFC8D4" transform="rotate(-30 580 240)"/>
+    <ellipse cx="680" cy="190" rx="5" ry="7" fill="#FFC0CB" transform="rotate(30 680 190)"/>
+    <ellipse cx="780" cy="250" rx="4" ry="6" fill="#FFB6C1" transform="rotate(-15 780 250)"/>
+    <ellipse cx="880" cy="200" rx="5" ry="7" fill="#FFC8D4" transform="rotate(25 880 200)"/>
+    <ellipse cx="920" cy="150" rx="4" ry="6" fill="#FFC0CB" transform="rotate(-20 920 150)"/>
+    
+    <!-- More falling petals -->
+    <ellipse cx="120" cy="300" rx="4" ry="5" fill="#FFB6C1" opacity="0.5" transform="rotate(10 120 300)"/>
+    <ellipse cx="250" cy="320" rx="3" ry="5" fill="#FFC0CB" opacity="0.5" transform="rotate(-15 250 320)"/>
+    <ellipse cx="400" cy="300" rx="4" ry="5" fill="#FFC8D4" opacity="0.5" transform="rotate(20 400 300)"/>
+    <ellipse cx="550" cy="320" rx="3" ry="5" fill="#FFB6C1" opacity="0.5" transform="rotate(-10 550 320)"/>
+    <ellipse cx="700" cy="300" rx="4" ry="5" fill="#FFC0CB" opacity="0.5" transform="rotate(15 700 300)"/>
+    <ellipse cx="850" cy="320" rx="3" ry="5" fill="#FFC8D4" opacity="0.5" transform="rotate(-20 850 320)"/>
+  </g>
+  
+  <!-- Bird -->
+  <path d="M 500 80 Q 510 70 520 80 Q 510 75 500 80" stroke="#8D6E63" stroke-width="2" fill="none"/>
+</svg>

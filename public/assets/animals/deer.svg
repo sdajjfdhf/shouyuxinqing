@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="deerBody" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#D2691E"/>
+      <stop offset="100%" style="stop-color:#8B4513"/>
+    </linearGradient>
+    <linearGradient id="deerFace" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#DEB887"/>
+      <stop offset="100%" style="stop-color:#CD853F"/>
+    </linearGradient>
+    <linearGradient id="deerLight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFE4C4"/>
+      <stop offset="100%" style="stop-color:#FFDAB9"/>
+    </linearGradient>
+  </defs>
+  <!-- Body -->
+  <ellipse cx="100" cy="155" rx="45" ry="30" fill="url(#deerBody)"/>
+  <!-- Head -->
+  <circle cx="100" cy="95" r="38" fill="url(#deerFace)"/>
+  <!-- Antlers -->
+  <path d="M 70 55 Q 65 35 75 25 Q 80 30 78 40 Q 85 35 88 45" stroke="#8B4513" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <path d="M 130 55 Q 135 35 125 25 Q 120 30 122 40 Q 115 35 112 45" stroke="#8B4513" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <!-- Ears -->
+  <ellipse cx="65" cy="70" rx="10" ry="18" fill="url(#deerBody)" transform="rotate(-20 65 70)"/>
+  <ellipse cx="135" cy="70" rx="10" ry="18" fill="url(#deerBody)" transform="rotate(20 135 70)"/>
+  <ellipse cx="65" cy="70" rx="5" ry="10" fill="url(#deerLight)" transform="rotate(-20 65 70)"/>
+  <ellipse cx="135" cy="70" rx="5" ry="10" fill="url(#deerLight)" transform="rotate(20 135 70)"/>
+  <!-- Face Light Patch -->
+  <ellipse cx="100" cy="105" rx="22" ry="18" fill="url(#deerLight)"/>
+  <!-- Eyes -->
+  <ellipse cx="82" cy="90" rx="7" ry="9" fill="#4A4A4A"/>
+  <ellipse cx="118" cy="90" rx="7" ry="9" fill="#4A4A4A"/>
+  <circle cx="84" cy="87" r="3" fill="white"/>
+  <circle cx="120" cy="87" r="3" fill="white"/>
+  <!-- Nose -->
+  <ellipse cx="100" cy="105" rx="6" ry="5" fill="#8B4513"/>
+  <!-- Mouth -->
+  <path d="M 92 112 Q 100 120 108 112" stroke="#4A4A4A" stroke-width="2" fill="none"/>
+  <!-- Cheeks -->
+  <circle cx="65" cy="100" r="8" fill="#FFB6C1" opacity="0.4"/>
+  <circle cx="135" cy="100" r="8" fill="#FFB6C1" opacity="0.4"/>
+  <!-- Spots on face -->
+  <circle cx="75" cy="75" r="4" fill="#FFE4C4" opacity="0.6"/>
+  <circle cx="125" cy="75" r="4" fill="#FFE4C4" opacity="0.6"/>
+</svg>
