@@ -46,7 +46,7 @@ export interface KnowledgeArticle {
   content?: string;
 }
 
-export type TabType = 'home' | 'forest' | 'chat' | 'knowledge' | 'profile' | 'diary';
+export type TabType = 'home' | 'forest' | 'chat' | 'knowledge' | 'profile' | 'diary' | 'meditation' | 'admin' | 'forest-3d';
 
 /** 情绪标签（与主导情绪区分，可多选） */
 export type EmotionTag = 'anxious' | 'tired' | 'low' | 'irritable';

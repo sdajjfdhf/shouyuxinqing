@@ -6,7 +6,7 @@ import { useStore } from '@store/useStore';
 import { formatTime } from '@utils/helpers';
 
 export function ChatPage() {
-  const { messages, sendUserMessage, setCurrentTab, selectedAnimal } = useStore();
+  const { messages, sendUserMessage, setCurrentTab, selectedAnimal, isTyping } = useStore();
   const [inputValue, setInputValue] = useState('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -32,7 +32,7 @@ export function ChatPage() {
   };
 
   return (
-    <div className="flex min-h-screen flex-col bg-gradient-to-b from-blossom-50/95 to-forest-50 pb-24">
+    <div className="flex min-h-screen flex-col bg-gradient-to-b from-blossom-50/95 to-forest-50 pb-32">
       <header className="sticky top-0 z-50 flex items-center gap-3 glass px-4 py-3">
         <motion.button
           whileTap={{ scale: 0.9 }}
@@ -59,7 +59,7 @@ export function ChatPage() {
         </button>
       </header>
 
-      <div className="min-h-0 flex-1 space-y-4 overflow-y-auto px-4 py-4">
+      <div className="min-h-0 flex-1 space-y-4 overflow-y-auto px-4 py-4 pb-8">
         <div className="text-center text-xs text-forest-500 my-4">
           {formatTime(new Date())}
         </div>
@@ -71,10 +71,28 @@ export function ChatPage() {
             onQuickReply={(reply) => sendUserMessage(reply)}
           />
         ))}
+        {isTyping && (
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="flex items-start gap-3"
+          >
+            <div className="w-10 h-10 bg-gradient-to-br from-amber-100 to-orange-100 rounded-2xl flex items-center justify-center text-2xl shadow-sm">
+              {selectedAnimal.emoji}
+            </div>
+            <div className="bg-white/80 rounded-2xl px-4 py-3 shadow-sm">
+              <div className="flex gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-forest-400 animate-bounce" style={{ animationDelay: '0ms' }} />
+                <span className="w-2 h-2 rounded-full bg-forest-400 animate-bounce" style={{ animationDelay: '150ms' }} />
+                <span className="w-2 h-2 rounded-full bg-forest-400 animate-bounce" style={{ animationDelay: '300ms' }} />
+              </div>
+            </div>
+          </motion.div>
+        )}
         <div ref={messagesEndRef} />
       </div>
 
-      <div className="fixed bottom-[80px] left-0 right-0 z-40 mx-auto max-w-md border-t border-blossom-100/50 glass px-4 py-3">
+      <div className="fixed bottom-[100px] left-0 right-0 z-40 mx-auto max-w-md border-t border-blossom-100/50 glass px-4 py-3">
         <div className="flex items-center gap-2">
           <button type="button" className="p-2 text-forest-600 hover:bg-forest-50 rounded-full transition-colors">
             <span className="text-xl">😊</span>

@@ -8,14 +8,19 @@ import {
   TabType,
   EmotionTag,
 } from '@/types';
-import { generateId, getRandomResponse } from '@utils/helpers';
+import { generateId } from '@utils/helpers';
 import { isSupabaseConfigured } from '@/lib/supabase';
 import { emotionService, chatService, userStatsService, animalService } from '@/lib/services';
+import { fetchDeepSeekResponse } from '@/lib/deepSeekService';
 
 interface AppState {
   // 导航
   currentTab: TabType;
   setCurrentTab: (tab: TabType) => void;
+
+  // 文章详情
+  selectedArticleId: string | null;
+  setSelectedArticleId: (id: string | null) => void;
 
   authUserLabel: string | null;
   setAuthUserLabel: (label: string | null) => void;
@@ -33,6 +38,7 @@ interface AppState {
   
   // 聊天
   messages: Message[];
+  isTyping: boolean;
   addMessage: (content: string, type: 'user' | 'ai', quickReplies?: string[]) => void;
   sendUserMessage: (content: string) => void;
   
@@ -72,6 +78,10 @@ export const useStore = create<AppState>()((set, get) => ({
   // 导航
   currentTab: 'home',
   setCurrentTab: (tab) => set({ currentTab: tab }),
+
+  // 文章详情
+  selectedArticleId: null,
+  setSelectedArticleId: (id) => set({ selectedArticleId: id }),
 
   authUserLabel: null,
   setAuthUserLabel: (label) => set({ authUserLabel: label }),
@@ -193,6 +203,7 @@ export const useStore = create<AppState>()((set, get) => ({
     timestamp: new Date(),
     quickReplies: ['工作任务太多', '人际关系', '自我要求太高'],
   }],
+  isTyping: false,
   addMessage: async (content, type, quickReplies) => {
     if (!isSupabaseConfigured) {
       const msg: Message = {
@@ -217,13 +228,60 @@ export const useStore = create<AppState>()((set, get) => ({
     }
   },
   sendUserMessage: async (content) => {
-    get().addMessage(content, 'user');
+    const { todayMood } = get();
+    
+    // 直接添加用户消息
+    const userMsg: Message = {
+      id: generateId(),
+      content,
+      type: 'user',
+      timestamp: new Date(),
+    };
+    set((state) => ({
+      messages: [...state.messages, userMsg],
+      isTyping: true,
+    }));
+    
     if (isSupabaseConfigured) {
       void userStatsService.incrementChatCount();
+      void chatService.addMessage(content, 'user');
     }
-    setTimeout(() => {
-      get().addMessage(getRandomResponse(content), 'ai');
-    }, 1000);
+    
+    // 模拟思考时间（1-2秒）
+    const thinkingTime = 1000 + Math.random() * 1000;
+    
+    setTimeout(async () => {
+      // 使用 DeepSeek 生成智能回复
+      const { messages: currentMessages } = get();
+      
+      // 将消息历史转换为后端需要的格式
+      const context = currentMessages.slice(-5).map(msg => ({
+        role: msg.type === 'user' ? 'user' : 'assistant',
+        content: msg.content,
+      }));
+      
+      const reply = await fetchDeepSeekResponse(
+        content,
+        context,
+        todayMood || 'neutral'
+      );
+      
+      const aiMsg: Message = {
+        id: generateId(),
+        content: reply,
+        type: 'ai',
+        timestamp: new Date(),
+        quickReplies: ['工作任务太多', '和同事有矛盾', '压力太大', '想辞职'],
+      };
+      set((state) => ({
+        messages: [...state.messages, aiMsg],
+        isTyping: false,
+      }));
+      
+      if (isSupabaseConfigured) {
+        void chatService.addMessage(reply, 'ai');
+      }
+    }, thinkingTime);
   },
   
   // 用户

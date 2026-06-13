@@ -108,8 +108,58 @@
     scrollbar-width: none;
   }
 
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
   .pb-safe {
     padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  /* iPhone 16 系列专用样式 */
+  .iphone16-container {
+    max-width: 430px;
+    margin: 0 auto;
+    min-height: 100vh;
+    position: relative;
+  }
+}
+
+/* iPhone 16 系列媒体查询适配 */
+/* iPhone 16 / iPhone 16 Pro: 430 x 932 px */
+@media only screen and (width: 430px) and (height: 932px) {
+  .iphone16-container {
+    max-width: 430px;
+    min-height: 932px;
+  }
+}
+
+/* iPhone 16 Plus / iPhone 16 Pro Max: 460 x 1010 px */
+@media only screen and (width: 460px) and (height: 1010px) {
+  .iphone16-container {
+    max-width: 460px;
+    min-height: 1010px;
+  }
+}
+
+/* 通用 iPhone 16 系列适配 */
+@media only screen and (min-width: 430px) and (max-width: 460px) {
+  .iphone16-container {
+    max-width: 100%;
+    min-height: 100vh;
+  }
+}
+
+/* 小屏设备适配 */
+@media only screen and (max-width: 429px) {
+  .iphone16-container {
+    max-width: 100%;
+    min-height: 100vh;
   }
 }
 

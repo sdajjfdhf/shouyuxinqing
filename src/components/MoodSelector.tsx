@@ -21,38 +21,40 @@ export function MoodSelector({ selectedMood, onSelect }: MoodSelectorProps) {
   const [hoveredMood, setHoveredMood] = useState<MoodType | null>(null);
 
   return (
-    <div className="grid grid-cols-3 gap-3 sm:flex sm:justify-between">
-      {moods.map((mood) => (
-        <motion.button
-          key={mood.type}
-          onClick={() => onSelect(mood.type)}
-          onHoverStart={() => setHoveredMood(mood.type)}
-          onHoverEnd={() => setHoveredMood(null)}
-          whileHover={{ scale: 1.1, y: -5 }}
-          whileTap={{ scale: 0.95 }}
-          className={cn(
-            'flex flex-col items-center gap-2 p-3 rounded-2xl transition-all duration-300',
-            selectedMood === mood.type 
-              ? 'bg-white shadow-lg scale-105 ring-2 ring-forest-300' 
-              : 'hover:bg-white/50',
-            hoveredMood === mood.type && !selectedMood && 'bg-white/30'
-          )}
-        >
-          <motion.span 
-            className="text-4xl filter drop-shadow-lg"
-            animate={selectedMood === mood.type ? { scale: [1, 1.2, 1] } : {}}
-            transition={{ duration: 0.3 }}
+    <div className="overflow-x-auto scrollbar-hide -mx-2 px-2">
+      <div className="flex gap-3 min-w-max">
+        {moods.map((mood) => (
+          <motion.button
+            key={mood.type}
+            onClick={() => onSelect(mood.type)}
+            onHoverStart={() => setHoveredMood(mood.type)}
+            onHoverEnd={() => setHoveredMood(null)}
+            whileHover={{ scale: 1.1, y: -5 }}
+            whileTap={{ scale: 0.95 }}
+            className={cn(
+              'flex flex-col items-center gap-1.5 p-3 rounded-xl transition-all duration-300 flex-shrink-0 w-16',
+              selectedMood === mood.type 
+                ? 'bg-white shadow-lg scale-105 ring-2 ring-forest-300' 
+                : 'hover:bg-white/50',
+              hoveredMood === mood.type && !selectedMood && 'bg-white/30'
+            )}
           >
-            {mood.emoji}
-          </motion.span>
-          <span className={cn(
-            'text-xs font-medium',
-            selectedMood === mood.type ? 'text-forest-700' : 'text-forest-600'
-          )}>
-            {mood.label}
-          </span>
-        </motion.button>
-      ))}
+            <motion.span 
+              className="text-3xl filter drop-shadow-md"
+              animate={selectedMood === mood.type ? { scale: [1, 1.2, 1] } : {}}
+              transition={{ duration: 0.3 }}
+            >
+              {mood.emoji}
+            </motion.span>
+            <span className={cn(
+              'text-xs font-medium',
+              selectedMood === mood.type ? 'text-forest-700' : 'text-forest-600'
+            )}>
+              {mood.label}
+            </span>
+          </motion.button>
+        ))}
+      </div>
     </div>
   );
 }

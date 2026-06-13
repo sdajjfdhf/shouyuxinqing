@@ -3,14 +3,21 @@ import { motion } from 'framer-motion';
 import { GlassCard } from '@components/GlassCard';
 import { useStore } from '@store/useStore';
 import { isSupabaseConfigured, supabase } from '@/lib/supabase';
-import { Target, Trophy, Bell, Heart, Share2, Settings, ChevronRight } from 'lucide-react';
+import { Target, Trophy, Bell, Heart, Share2, Settings, ChevronRight, Shield } from 'lucide-react';
+import GoalsPage from './GoalsPage';
+import AchievementsPage from './AchievementsPage';
+import ReminderSettingsPage from './ReminderSettingsPage';
+import EmergencyPage from './EmergencyPage';
+import SharePage from './SharePage';
+import AdminChatPage from './AdminChatPage';
 
 const menuItems = [
-  { icon: Target, label: '我的目标', color: 'bg-pink-100' },
-  { icon: Trophy, label: '成就徽章', color: 'bg-yellow-100', badge: '12/48' },
-  { icon: Bell, label: '提醒设置', color: 'bg-blue-100' },
-  { icon: Heart, label: '紧急求助', color: 'bg-purple-100', important: true },
-  { icon: Share2, label: '分享给朋友', color: 'bg-green-100' },
+  { icon: Target, label: '我的目标', color: 'bg-pink-100', page: 'goals' as const },
+  { icon: Trophy, label: '成就徽章', color: 'bg-yellow-100', badge: '12/48', page: 'achievements' as const },
+  { icon: Bell, label: '提醒设置', color: 'bg-blue-100', page: 'reminders' as const },
+  { icon: Heart, label: '紧急求助', color: 'bg-purple-100', important: true, page: 'emergency' as const },
+  { icon: Share2, label: '分享给朋友', color: 'bg-green-100', page: 'share' as const },
+  { icon: Shield, label: '管理员面板', color: 'bg-red-100', page: 'admin' as const },
 ];
 
 export function ProfilePage() {
@@ -19,6 +26,7 @@ export function ProfilePage() {
   const [password, setPassword] = useState('');
   const [authHint, setAuthHint] = useState<string | null>(null);
   const [authBusy, setAuthBusy] = useState(false);
+  const [, setCurrentPage] = useState<'profile' | 'goals' | 'achievements' | 'reminders' | 'emergency' | 'share' | 'admin'>('profile');
 
   async function handleSignUp() {
     setAuthHint(null);
@@ -240,7 +248,10 @@ export function ProfilePage() {
               key={index}
               whileTap={{ scale: 0.98 }}
             >
-              <GlassCard className="p-4 flex items-center justify-between cursor-pointer hover:bg-white/80 transition-colors">
+              <GlassCard 
+                className="p-4 flex items-center justify-between cursor-pointer hover:bg-white/80 transition-colors"
+                onClick={() => item.page && setCurrentPage(item.page)}
+              >
                 <div className="flex items-center gap-3">
                   <div className={`w-10 h-10 ${item.color} rounded-xl flex items-center justify-center`}>
                     <Icon className="w-5 h-5 text-forest-700" />
@@ -263,6 +274,36 @@ export function ProfilePage() {
           );
         })}
       </section>
+    </div>
+  );
+}
+
+// 页面路由组件
+export function ProfileRouter() {
+  const [currentPage, setCurrentPage] = useState<'profile' | 'goals' | 'achievements' | 'reminders' | 'emergency' | 'share' | 'admin'>('profile');
+
+  const renderPage = () => {
+    switch (currentPage) {
+      case 'goals':
+        return <GoalsPage onBack={() => setCurrentPage('profile')} />;
+      case 'achievements':
+        return <AchievementsPage onBack={() => setCurrentPage('profile')} />;
+      case 'reminders':
+        return <ReminderSettingsPage onBack={() => setCurrentPage('profile')} />;
+      case 'emergency':
+        return <EmergencyPage onBack={() => setCurrentPage('profile')} />;
+      case 'share':
+        return <SharePage onBack={() => setCurrentPage('profile')} />;
+      case 'admin':
+        return <AdminChatPage onBack={() => setCurrentPage('profile')} />;
+      default:
+        return <ProfilePage />;
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-sky-100 via-green-50 to-emerald-100">
+      {renderPage()}
     </div>
   );
 }

@@ -1,20 +1,67 @@
-import { useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
-import { ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
+import { useEffect, useRef, useState, useMemo } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronLeft, ChevronRight, Sparkles, TreePine, Award, Calendar, Star, Lock, ArrowRight } from 'lucide-react';
 import { GlassCard } from '@components/GlassCard';
 import { BEAUTIFUL_LITTLE_THINGS } from '@/data/beautifulLittleThings';
+import { achievements } from '@/data/achievements';
+import { useStore } from '@store/useStore';
 
 const weekDays = ['周一', '周二', '周三', '周四', '周五', '周六', '今天'];
 
-const achievements = [
-  { icon: '🌱', title: '种下第一棵树', date: '2024年3月1日', stars: 50 },
-  { icon: '📝', title: '连续记录7天', date: '2024年3月8日', stars: 100 },
-  { icon: '🧘', title: '完成首次冥想', date: '2024年3月15日', stars: 80 },
-];
-
 export function ForestPage() {
   const littleThingsRef = useRef<HTMLDivElement>(null);
-  const weekData = [60, 80, 40, 90, 50, 70, 30];
+  const { moodHistory = [], userStats, emotionHistory, setCurrentTab } = useStore();
+  const [unlockedAchievements, setUnlockedAchievements] = useState<string[]>([]);
+  const [showNotification, setShowNotification] = useState<string | null>(null);
+
+  // 计算统计数据
+  const stats = useMemo(() => ({
+    streakDays: userStats.streakDays || 0,
+    totalDays: emotionHistory.length || 0,
+    meditationMinutes: userStats.meditationMinutes || 0,
+    chatCount: userStats.chatCount || 0,
+    moodRecordCount: emotionHistory.length || 0,
+    totalStars: userStats.totalStars || 0,
+  }), [userStats, emotionHistory]);
+
+  // 检查并解锁成就
+  useEffect(() => {
+    const newlyUnlocked: string[] = [];
+    achievements.forEach((achievement) => {
+      if (achievement.condition(stats) && !unlockedAchievements.includes(achievement.id)) {
+        newlyUnlocked.push(achievement.id);
+      }
+    });
+
+    if (newlyUnlocked.length > 0) {
+      setUnlockedAchievements((prev) => [...prev, ...newlyUnlocked]);
+      // 显示成就解锁通知
+      const firstNew = achievements.find((a) => a.id === newlyUnlocked[0]);
+      if (firstNew) {
+        setShowNotification(firstNew.id);
+        setTimeout(() => setShowNotification(null), 3000);
+      }
+    }
+  }, [stats, unlockedAchievements]);
+  
+  // 根据真实的情绪历史数据生成图表
+  const generateWeekData = () => {
+    const data = moodHistory && moodHistory.length > 0 ? moodHistory.slice(-7) : [];
+    const weekData = [];
+    for (let i = 0; i < 7; i++) {
+      if (data[i] && typeof data[i].moodValue === 'number') {
+        // 将情绪值转换为百分比 (1-5 -> 20-100)
+        weekData.push((data[i].moodValue / 5) * 100);
+      } else {
+        // 如果没有数据，使用随机值
+        weekData.push(30 + Math.random() * 50);
+      }
+    }
+    return weekData;
+  };
+  
+  const weekData = generateWeekData();
+  const treeCount = Math.min(stats.totalDays, 7); // 最多显示7棵树
 
   useEffect(() => {
     const el = littleThingsRef.current;
@@ -52,41 +99,101 @@ export function ForestPage() {
       </section>
 
       <section className="px-6">
-        <GlassCard className="relative flex h-64 items-end justify-center gap-4 overflow-hidden p-6">
-          <div className="absolute inset-0 bg-gradient-to-b from-blossom-100/60 to-forest-100/80" />
+        <GlassCard className="relative flex h-72 items-end justify-center gap-3 overflow-hidden p-6 cursor-pointer group">
+          <motion.div
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="absolute inset-0 bg-gradient-to-b from-blossom-50/80 via-forest-100/60 to-forest-200/80"
+              onClick={() => setCurrentTab('forest-3d')}
+            />
           
-          {[
-            { emoji: '🌳', height: 'h-16', delay: 0 },
-            { emoji: '🌲', height: 'h-20', delay: 0.5 },
-            { emoji: '🌿', height: 'h-12', delay: 1 },
-            { emoji: '🌳', height: 'h-16', delay: 1.5 },
-          ].map((tree, index) => (
-            <motion.div
-              key={index}
-              initial={{ scaleY: 0 }}
-              animate={{ scaleY: 1 }}
-              transition={{ delay: tree.delay, duration: 0.5 }}
-              className="relative z-10 flex flex-col items-center origin-bottom animate-sway"
-              style={{ animationDelay: `${tree.delay}s` }}
-            >
-              <span className="text-5xl filter drop-shadow-lg">{tree.emoji}</span>
-              <div className={`w-2 ${tree.height} bg-amber-700 rounded-full mt-[-10px]`} />
-            </motion.div>
-          ))}
-          
+          {/* 背景装饰 */}
           <motion.div 
-            animate={{ y: [0, -10, 0] }}
+            className="absolute top-4 left-4 text-sm opacity-60"
+            animate={{ scale: [1, 1.1, 1] }}
             transition={{ duration: 3, repeat: Infinity }}
-            className="absolute bottom-20 left-10 text-2xl"
+          >☀️</motion.div>
+          <motion.div 
+            className="absolute top-6 right-6 text-sm opacity-60"
+            animate={{ x: [0, 10, 0] }}
+            transition={{ duration: 4, repeat: Infinity }}
+          >☁️</motion.div>
+          
+          {/* 草地 */}
+          <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-green-400/40 to-transparent" />
+          
+          {/* 树木 */}
+          {Array.from({ length: treeCount }).map((_, index) => {
+            const treeVariants = ['🌳', '🌲', '🌴', '🌿', '🪴', '🎋', '🌵'];
+            const heights = ['h-14', 'h-18', 'h-22', 'h-16', 'h-20', 'h-12', 'h-16'];
+            return (
+              <motion.div
+                key={index}
+                initial={{ scaleY: 0, opacity: 0 }}
+                animate={{ scaleY: 1, opacity: 1 }}
+                transition={{ delay: index * 0.15, duration: 0.6, ease: 'easeOut' }}
+                className="relative z-10 flex flex-col items-center origin-bottom"
+                whileHover={{ scale: 1.15, y: -8 }}
+              >
+                <motion.span 
+                  className="text-4xl md:text-5xl filter drop-shadow-lg"
+                  animate={{ rotate: [-2, 2, -2] }}
+                  transition={{ duration: 4 + index, repeat: Infinity, ease: 'easeInOut' }}
+                >
+                  {treeVariants[index % treeVariants.length]}
+                </motion.span>
+                <div className={`w-2 ${heights[index % heights.length]} bg-gradient-to-t from-amber-800 to-amber-600 rounded-full mt-[-8px] shadow-sm`} />
+              </motion.div>
+            );
+          })}
+          
+          {/* 小动物装饰 */}
+          <motion.div 
+            animate={{ y: [0, -12, 0], x: [0, 5, 0] }}
+            transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut' }}
+            className="absolute bottom-16 left-8 text-xl md:text-2xl hover:scale-125 transition-transform"
           >
             🐰
           </motion.div>
           <motion.div 
-            animate={{ y: [0, -6, 0] }}
-            transition={{ duration: 4, repeat: Infinity, delay: 1 }}
-            className="absolute bottom-16 right-12 text-2xl"
+            animate={{ y: [0, -8, 0], x: [0, -8, 0] }}
+            transition={{ duration: 4.5, repeat: Infinity, delay: 0.5, ease: 'easeInOut' }}
+            className="absolute bottom-20 right-10 text-xl md:text-2xl hover:scale-125 transition-transform"
           >
             🦋
+          </motion.div>
+          
+          {/* 统计信息 */}
+          <div className="absolute top-4 right-4 flex flex-col gap-1 bg-white/70 backdrop-blur-sm rounded-xl px-3 py-2 shadow-sm">
+            <div className="flex items-center gap-1 text-xs text-forest-700">
+              <TreePine className="w-3 h-3" />
+              <span>{treeCount} 棵树</span>
+            </div>
+            <div className="flex items-center gap-1 text-xs text-forest-700">
+              <Calendar className="w-3 h-3" />
+              <span>{stats.totalDays} 天</span>
+            </div>
+            <div className="flex items-center gap-1 text-xs text-amber-600">
+              <Star className="w-3 h-3 fill-current" />
+              <span>{stats.totalStars}</span>
+            </div>
+          </div>
+          
+          {/* 进入3D森林提示 */}
+          <motion.div 
+            className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 bg-white/80 backdrop-blur-sm rounded-full px-4 py-2 shadow-lg"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+            whileHover={{ scale: 1.05 }}
+          >
+            <span className="text-sm text-forest-700 font-medium">进入3D森林</span>
+            <motion.div
+              animate={{ x: [0, 3, 0] }}
+              transition={{ duration: 1, repeat: Infinity }}
+            >
+              <ArrowRight className="w-4 h-4 text-forest-600" />
+            </motion.div>
           </motion.div>
         </GlassCard>
       </section>
@@ -116,9 +223,6 @@ export function ForestPage() {
             </button>
           </div>
         </div>
-        <p className="mb-3 px-1 text-xs leading-relaxed text-forest-600">
-          可左右滑动图集，或点两侧箭头。电脑也可把鼠标放在图集上，用滚轮上下拨动来横翻。
-        </p>
         {/*
           外层单独负责 overflow-x（内层 flex + w-max），避免与 display:flex 同层时在部分浏览器里无法横向滚动。
         */}
@@ -164,52 +268,126 @@ export function ForestPage() {
       </section>
 
       <section className="px-6">
-        <h3 className="font-bold text-forest-800 mb-3 px-1">本周情绪概览</h3>
+        <div className="flex items-center justify-between mb-3 px-1">
+          <h3 className="font-bold text-forest-800 flex items-center gap-2">
+            <Sparkles className="w-4 h-4 text-amber-500" />
+            本周情绪概览
+          </h3>
+          <span className="text-xs text-forest-500">共 {Math.floor(stats.meditationMinutes / 5)} 次冥想</span>
+        </div>
         <GlassCard className="p-5">
           <div className="flex justify-between items-end h-32 gap-2">
-            {weekData.map((height, index) => (
-              <div key={index} className="flex-1 flex flex-col items-center gap-2">
-                <div className="w-full bg-forest-200 rounded-t-2xl relative overflow-hidden" style={{ height: '100%' }}>
-                  <motion.div
-                    initial={{ height: 0 }}
-                    animate={{ height: `${height}%` }}
-                    transition={{ duration: 1, delay: index * 0.1 }}
-                    className={`absolute bottom-0 w-full rounded-t-2xl ${index === 6 ? 'bg-purple-400' : 'bg-forest-400'}`}
-                  />
+            {weekData.map((height, index) => {
+              const isToday = index === 6;
+              const moodColor = height >= 70 ? 'bg-green-400' : height >= 40 ? 'bg-yellow-400' : 'bg-red-400';
+              return (
+                <div key={index} className="flex-1 flex flex-col items-center gap-2">
+                  <div className="w-full bg-forest-100 rounded-t-2xl relative overflow-hidden" style={{ height: '100%' }}>
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: `${height}%`, opacity: 1 }}
+                      transition={{ duration: 0.8, delay: index * 0.1 }}
+                      className={`absolute bottom-0 w-full rounded-t-2xl ${moodColor} shadow-md`}
+                    />
+                    {isToday && (
+                      <motion.div
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ delay: 0.8, type: 'spring' }}
+                        className="absolute -top-1 left-1/2 -translate-x-1/2 w-3 h-3 bg-white rounded-full shadow-sm"
+                      />
+                    )}
+                  </div>
+                  <span className={`text-xs ${isToday ? 'text-forest-800 font-bold' : 'text-forest-500'}`}>
+                    {weekDays[index]}
+                  </span>
+                  <span className="text-xs text-forest-400">{Math.round(height)}%</span>
                 </div>
-                <span className={`text-xs ${index === 6 ? 'text-forest-800 font-bold' : 'text-forest-600'}`}>
-                  {weekDays[index]}
-                </span>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </GlassCard>
       </section>
 
       <section className="px-6">
-        <h3 className="font-bold text-forest-800 mb-3 px-1">森林成长记录</h3>
-        <div className="space-y-3">
-          {achievements.map((achievement, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: index * 0.1 }}
-            >
-              <GlassCard className="p-4 flex items-center gap-3">
-                <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-2xl">
-                  {achievement.icon}
-                </div>
-                <div className="flex-1">
-                  <h4 className="font-bold text-forest-900 text-sm">{achievement.title}</h4>
-                  <p className="text-xs text-forest-600">{achievement.date}</p>
-                </div>
-                <span className="text-xs text-forest-500 font-medium">+{achievement.stars} ⭐</span>
-              </GlassCard>
-            </motion.div>
-          ))}
+        <div className="flex items-center gap-2 mb-3 px-1">
+          <Award className="w-4 h-4 text-amber-500" />
+          <h3 className="font-bold text-forest-800">森林成长记录</h3>
+          <span className="text-sm font-bold text-forest-800 ml-auto">
+            已解锁 {unlockedAchievements.length}/{achievements.length}
+          </span>
+        </div>
+        <div className="grid grid-cols-2 gap-3">
+          {achievements.map((achievement, index) => {
+            const isUnlocked = unlockedAchievements.includes(achievement.id);
+            return (
+              <motion.div
+                key={achievement.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                whileHover={isUnlocked ? { y: -3 } : {}}
+              >
+                <GlassCard className={`p-4 flex flex-col items-center text-center ${isUnlocked ? '' : 'opacity-60 grayscale'}`}>
+                  <div className={`w-14 h-14 rounded-full flex items-center justify-center text-2xl mb-2 shadow-sm ${isUnlocked ? 'bg-gradient-to-br from-amber-50 to-green-100' : 'bg-gray-100'}`}>
+                    {isUnlocked ? (
+                      <motion.span
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ type: 'spring', delay: index * 0.1 }}
+                      >
+                        {achievement.icon}
+                      </motion.span>
+                    ) : (
+                      <Lock className="w-6 h-6 text-gray-400" />
+                    )}
+                  </div>
+                  <h4 className={`font-bold text-xs mb-1 ${isUnlocked ? 'text-forest-900' : 'text-gray-500'}`}>
+                    {isUnlocked ? achievement.title : '???'}
+                  </h4>
+                  <p className="text-xs text-forest-500 mb-2 line-clamp-1">
+                    {isUnlocked ? achievement.description : '完成特定任务解锁'}
+                  </p>
+                  <div className="flex items-center gap-1 text-xs text-amber-600">
+                    <Star className="w-3 h-3 fill-current" />
+                    <span>{achievement.stars}</span>
+                  </div>
+                </GlassCard>
+              </motion.div>
+            );
+          })}
         </div>
       </section>
+
+      {/* 成就解锁通知 */}
+      <AnimatePresence>
+        {showNotification && (
+          <motion.div
+            initial={{ opacity: 0, y: -50 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -50 }}
+            className="fixed top-20 left-1/2 -translate-x-1/2 z-50"
+          >
+            <GlassCard className="px-6 py-4 shadow-lg border-2 border-amber-400">
+              <div className="flex items-center gap-3">
+                <motion.div
+                  animate={{ scale: [1, 1.2, 1] }}
+                  transition={{ repeat: Infinity, duration: 0.5 }}
+                  className="text-3xl"
+                >
+                  🏆
+                </motion.div>
+                <div>
+                  <p className="text-sm font-bold text-forest-900">成就解锁！</p>
+                  <p className="text-xs text-forest-600">
+                    {achievements.find((a) => a.id === showNotification)?.title}
+                  </p>
+                </div>
+              </div>
+            </GlassCard>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
