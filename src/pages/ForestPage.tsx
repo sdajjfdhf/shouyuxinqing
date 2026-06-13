@@ -10,7 +10,7 @@ const weekDays = ['周一', '周二', '周三', '周四', '周五', '周六', '�
 
 export function ForestPage() {
   const littleThingsRef = useRef<HTMLDivElement>(null);
-  const { moodHistory = [], userStats, emotionHistory, setCurrentTab } = useStore();
+  const { userStats, emotionHistory, setCurrentTab } = useStore();
   const [unlockedAchievements, setUnlockedAchievements] = useState<string[]>([]);
   const [showNotification, setShowNotification] = useState<string | null>(null);
 
@@ -22,6 +22,12 @@ export function ForestPage() {
     chatCount: userStats.chatCount || 0,
     moodRecordCount: emotionHistory.length || 0,
     totalStars: userStats.totalStars || 0,
+    animalCount: 4,
+    diaryCount: 0,
+    sleepEarlyCount: 0,
+    wakeEarlyCount: 0,
+    courseCount: 0,
+    shareCount: 0,
   }), [userStats, emotionHistory]);
 
   // 检查并解锁成就
@@ -46,12 +52,12 @@ export function ForestPage() {
   
   // 根据真实的情绪历史数据生成图表
   const generateWeekData = () => {
-    const data = moodHistory && moodHistory.length > 0 ? moodHistory.slice(-7) : [];
+    const data = emotionHistory && emotionHistory.length > 0 ? emotionHistory.slice(-7) : [];
     const weekData = [];
     for (let i = 0; i < 7; i++) {
-      if (data[i] && typeof data[i].moodValue === 'number') {
-        // 将情绪值转换为百分比 (1-5 -> 20-100)
-        weekData.push((data[i].moodValue / 5) * 100);
+      if (data[i] && typeof data[i].intensity === 'number') {
+        // 将情绪强度转换为百分比 (1-5 -> 20-100)
+        weekData.push((data[i].intensity / 5) * 100);
       } else {
         // 如果没有数据，使用随机值
         weekData.push(30 + Math.random() * 50);

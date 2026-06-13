@@ -105,7 +105,7 @@ export default function AchievementsPage({ onBack }: { onBack: () => void }) {
         x: centerX + (Math.random() - 0.5) * 200,
         y: centerY + (Math.random() - 0.5) * 200,
         color: colors[Math.floor(Math.random() * colors.length)],
-        type: isStar ? 'star' : 'particle'
+        type: isStar ? 'star' as const : 'particle' as const
       });
     }
 

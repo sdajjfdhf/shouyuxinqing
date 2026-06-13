@@ -367,7 +367,7 @@ export default function AdminChatPage({ onBack }: AdminChatPageProps) {
         )}
       </div>
 
-      <BottomNav currentPage="profile" />
+      <BottomNav />
     </div>
   );
 }

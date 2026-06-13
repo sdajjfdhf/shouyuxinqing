@@ -317,7 +317,7 @@ const Forest3DPage = () => {
   const { userStats, emotionHistory, selectedAnimal, setCurrentTab } = useStore();
   const [rotationX, setRotationX] = useState(0);
   const [rotationY, setRotationY] = useState(0);
-  const [hoveredTree, setHoveredTree] = useState<number | null>(null);
+  const [hoveredTree] = useState<number | null>(null);
   const [showTreeInfo, setShowTreeInfo] = useState(false);
   const [treeDetail, setTreeDetail] = useState<{ index: number; date: string; mood: string; type: string } | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -591,7 +591,7 @@ const Forest3DPage = () => {
           </motion.div>
 
           {/* 树木 */}
-          {trees.map((tree, index) => (
+          {trees.map((tree) => (
             <Tree3D
               key={tree.id}
               type={tree.type}

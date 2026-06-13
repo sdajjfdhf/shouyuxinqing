@@ -256,7 +256,7 @@ export const useStore = create<AppState>()((set, get) => ({
       
       // 将消息历史转换为后端需要的格式
       const context = currentMessages.slice(-5).map(msg => ({
-        role: msg.type === 'user' ? 'user' : 'assistant',
+        role: msg.type === 'user' ? 'user' as const : 'assistant' as const,
         content: msg.content,
       }));
       

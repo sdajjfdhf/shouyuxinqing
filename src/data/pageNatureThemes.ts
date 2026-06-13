@@ -47,6 +47,27 @@ export const PAGE_NATURE_THEMES: Record<PageNatureBannerKey, PageNatureTheme> = 
     subtitle: '小猫守着的树洞与星光笔记',
     animalEmoji: '🐱',
   },
+  meditation: {
+    imageSrc: '/assets/backgrounds/forest.svg',
+    imageAlt: '静谧的森林，适合冥想',
+    title: '冥想空间',
+    subtitle: '与熊猫一起深呼吸',
+    animalEmoji: '🐼',
+  },
+  admin: {
+    imageSrc: '/assets/backgrounds/hollow.svg',
+    imageAlt: '神秘的树洞入口',
+    title: '管理员',
+    subtitle: '管理后台入口',
+    animalEmoji: '🦉',
+  },
+  'forest-3d': {
+    imageSrc: '/assets/backgrounds/lake.svg',
+    imageAlt: '3D森林景观',
+    title: '3D森林',
+    subtitle: '沉浸式森林体验',
+    animalEmoji: '🦌',
+  },
 };
 
 /** 首页「一站一景」顺序：与底部导航森林 / 对话 / 学习 / 我的 一致，并含情绪日记 */
